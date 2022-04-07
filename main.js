@@ -1,5 +1,5 @@
 function init() {
-  new ol.Map({
+  const map = new ol.Map({
     view: new ol.View({
       center: [0, 0],
       zoom: 5,
@@ -9,6 +9,11 @@ function init() {
     ],
     target: "js-map",
   });
+
+  const drawInteraction = new ol.interaction.Draw({
+    type: "Polygon",
+  });
+  map.addInteraction(drawInteraction);
 }
 
-init()
+init();
