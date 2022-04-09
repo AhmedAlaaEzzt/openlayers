@@ -5,10 +5,14 @@ function init() {
       zoom: 5,
     }),
     layers: [
-      new ol.layer.Tile({ source: new ol.source.OSM() }), //Open Street Map
+      new ol.layer.Tile({ source: new ol.source.OSM() }),
+      new ol.layer.Tile({ source: new ol.source.OSM({
+          url: "https://{a-c}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+        }),
+      }),
     ],
     target: "js-map",
   });
 }
 
-init()
+init();
