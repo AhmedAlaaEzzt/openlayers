@@ -58,7 +58,14 @@ function init() {
   map.addLayer(baseLayerGroup);
 
   // Layer Switcher Logic for BaseLayers
+  const baseLayers = document.getElementById("baseLayers")
 
+  baseLayers.addEventListener("click", (e)=>{
+    if(e.target.nodeName === "INPUT"){
+      console.log(e.target.value);
+    }
+    
+  })
   
 }
 
