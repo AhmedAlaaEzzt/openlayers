@@ -8,8 +8,58 @@ function init() {
     target: "js-map",
   });
 
-  const osmLayer = new ol.layer.Tile({ source: new ol.source.OSM() });
-  map.addLayer(osmLayer);
+  //Base Layers
+  const openStreetMapStandard = new ol.layer.Tile({
+    source: new ol.source.OSM(),
+  });
+
+  const openStreetMapHumanitarian = new ol.layer.Tile({
+    source: new ol.source.OSM({
+      url: "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+    }),
+  });
+
+  const BingMaps = new ol.layer.Tile({
+    source: new ol.source.BingMaps({
+      key: "ApOR8JkmvCq-vC313dZcfsqPMRkESZek1vwOt0F6NvKud_5E2raeydr3hDRscWHt",
+      imagerySet: "Aerial",
+    }),
+  });
+
+  const cartoDB = new ol.layer.Tile({
+    source: new ol.source.XYZ({
+      url: "https://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{scale}.png",
+    }),
+  });
+
+  const stamenTonerWithLabels = new ol.layer.Tile({
+    source: new ol.source.Stamen({
+      layer: "toner-labels",
+    }),
+  });
+
+  const stamenToner = new ol.layer.Tile({
+    source: new ol.source.XYZ({
+      url: "https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
+    }),
+  });
+
+  const baseLayerGroup = new ol.layer.Group({
+    layers: [
+      openStreetMapStandard,
+      openStreetMapHumanitarian,
+      BingMaps,
+      cartoDB,
+      stamenTonerWithLabels,
+      stamenToner,
+    ],
+  });
+
+  map.addLayer(baseLayerGroup);
+
+  // Layer Switcher Logic for BaseLayers
+
+  
 }
 
 init();
