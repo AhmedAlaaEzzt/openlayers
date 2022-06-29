@@ -103,9 +103,20 @@ function init() {
     source: new ol.source.TileDebug(),
   });
 
+  const staticImage = new ol.layer.Image({
+    title: "staticImage",
+    visible: false,
+    source: new ol.source.ImageStatic({
+      url: './data/static_images/map.jpg',
+      imageExtent: [2946651.3399137994, 2925821.4794247323, 3327001.992660837, 3101932.392593778]
+    })
+  })
+
   const rasterTileLayerGroup = new ol.layer.Group({
-    layers: [tileArcGISRest, NOAAWMSLayer, tileDebugLayer],
+    layers: [tileArcGISRest, NOAAWMSLayer, tileDebugLayer, staticImage],
   });
+
+  
 
   map.addLayer(rasterTileLayerGroup);
 
