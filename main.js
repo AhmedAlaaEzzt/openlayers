@@ -68,7 +68,10 @@ function init() {
 
   baseLayers.addEventListener("click", (e) => {
     if (e.target.nodeName === "INPUT") {
-      console.log(e.target.value);
+      const selectedLayer = e.target.value;
+      baseLayerGroup
+        .getLayers()
+        .forEach((layer) => layer.setVisible(layer.get("title") ===  selectedLayer));
     }
   });
 }
