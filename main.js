@@ -21,8 +21,8 @@ function init() {
     }),
   });
 
-  const BingMaps = new ol.layer.Tile({
-    title: "BingMaps",
+  const bingMaps = new ol.layer.Tile({
+    title: "bingMaps",
     source: new ol.source.BingMaps({
       key: "ApOR8JkmvCq-vC313dZcfsqPMRkESZek1vwOt0F6NvKud_5E2raeydr3hDRscWHt",
       imagerySet: "Aerial",
@@ -54,7 +54,7 @@ function init() {
     layers: [
       openStreetMapStandard,
       openStreetMapHumanitarian,
-      BingMaps,
+      bingMaps,
       cartoDB,
       stamenTonerWithLabels,
       stamenToner,
