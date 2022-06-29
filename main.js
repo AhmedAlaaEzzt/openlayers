@@ -61,7 +61,36 @@ function init() {
     ],
   });
 
-  map.addLayer(baseLayerGroup);
+  //map.addLayer(baseLayerGroup);
+
+  const tileArcGISRest = new ol.layer.Tile({
+    title: "TileArcGISLayer",
+    source: new ol.source.TileArcGISRest({
+      url: "https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Population_World/MapServer",
+    }),
+  });
+
+  const NOAAWMSLayer = new ol.layer.Tile({
+    title: "NOAAWMSLayer",
+    source: new ol.source.TileWMS({
+      url: "https://nowcoast.noaa.gov/arcgis/services/nowcoast/sat_meteo_emulated_imagery_lightningstrikedensity_goes_time/MapServer/WMSServer?",
+      params: {
+        LAYERS: 1,
+        FORMAT: "image/png",
+      },
+    }),
+  });
+
+  const tileDebugLayer = new ol.layer.Tile({
+    title: "TileDebugLayer",
+    source: new ol.source.TileDebug(),
+  });
+
+  const rasterTileLayerGroup = new ol.layer.Group({
+    layers: [tileArcGISRest, NOAAWMSLayer, tileDebugLayer],
+  });
+
+  map.addLayer(rasterTileLayerGroup);
 
   // Layer Switcher Logic for BaseLayers
   const baseLayers = document.getElementById("baseLayers");
@@ -71,7 +100,9 @@ function init() {
       const selectedLayer = e.target.value;
       baseLayerGroup
         .getLayers()
-        .forEach((layer) => layer.setVisible(layer.get("title") ===  selectedLayer));
+        .forEach((layer) =>
+          layer.setVisible(layer.get("title") === selectedLayer)
+        );
     }
   });
 }
