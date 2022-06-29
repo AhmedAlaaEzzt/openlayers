@@ -1,7 +1,7 @@
 function init() {
   new ol.Map({
     view: new ol.View({
-      center: [0, 0],
+      center: [2968468.8073227336, 3668382.141344522],
       zoom: 5,
     }),
     layers: [
