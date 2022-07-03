@@ -8,6 +8,12 @@ function init() {
     width: 3,
    });
 
+   const regularShapeStyle = new ol.style.RegularShape({
+    fill: new ol.style.Fill({ color: [245, 49, 5, 1] }), //rgba
+    stroke: strokeStyle,
+    points: 3,
+    radius: 15,
+  });
 
   const map = new ol.Map({
     view: new ol.View({
@@ -24,7 +30,8 @@ function init() {
         style: new ol.style.Style({
           fill: fillStyle,
           stroke: strokeStyle,
-        }),
+          image: regularShapeStyle
+        })
       }),
     ],
     target: "js-map",
