@@ -1,18 +1,14 @@
 function init() {
-
   const fillStyle = new ol.style.Fill({
     color: [40, 119, 247, 1], //rgba
   });
 
   const strokeStyle = new ol.style.Stroke({
     color: [30, 30, 31, 1], //rgba
-    width:15,
-    lineCap: 'square',
-    lineJoin: 'miter',
-    lineDash: [50,20] //length of dash, space between dashes
-  });
+    width: 3,
+   });
 
-  
+
   const map = new ol.Map({
     view: new ol.View({
       center: [0, 0],
@@ -27,7 +23,7 @@ function init() {
         }),
         style: new ol.style.Style({
           fill: fillStyle,
-          stroke: strokeStyle
+          stroke: strokeStyle,
         }),
       }),
     ],
@@ -42,7 +38,7 @@ function init() {
 
   const overlayLayer = new ol.Overlay({
     element: overlayContainer,
-    positioning: 'bottom-center'
+    positioning: "bottom-center",
   });
 
   map.addOverlay(overlayLayer);
