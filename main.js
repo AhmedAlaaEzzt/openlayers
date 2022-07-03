@@ -24,6 +24,7 @@ function init() {
 
   const overlayLayer = new ol.Overlay({
     element: overlayContainer,
+    positioning: 'bottom-center'
   });
 
   map.addOverlay(overlayLayer);
