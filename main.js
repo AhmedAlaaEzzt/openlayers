@@ -1,4 +1,9 @@
 function init() {
+
+  const fillStyle = new ol.style.Fill({
+    color: [40, 119, 247, 1], //rgba
+  });
+  
   const map = new ol.Map({
     view: new ol.View({
       center: [0, 0],
@@ -10,6 +15,9 @@ function init() {
         source: new ol.source.Vector({
           url: "./data/vector/map.geojson",
           format: new ol.format.GeoJSON(),
+        }),
+        style: new ol.style.Style({
+          fill: fillStyle,
         }),
       }),
     ],
