@@ -6,14 +6,15 @@ function init() {
     }),
     layers: [
       new ol.layer.Tile({ source: new ol.source.OSM() }), //Open Street Map
-      new ol.layer.Vector({source: new ol.source.Vector({
-        url: './data/vector/map.geojson',
-        format: new ol.format.GeoJSON()
-      })})
+      new ol.layer.Vector({
+        source: new ol.source.Vector({
+          url: "./data/vector/map.geojson",
+          format: new ol.format.GeoJSON(),
+        }),
+      }),
     ],
     target: "js-map",
   });
-
 
   const overlayContainer = document.querySelector(".overlay-container");
   const fearureName = document.getElementById("fearure-name");
@@ -22,20 +23,25 @@ function init() {
   );
 
   const overlayLayer = new ol.Overlay({
-		element: overlayContainer,
-	});
+    element: overlayContainer,
+  });
 
-	map.addOverlay(overlayLayer);
+  map.addOverlay(overlayLayer);
 
-  	
-	  // Vector Feature Popup Logic
-	map.on("click", (e) => {
+  // Vector Feature Popup Logic
+  map.on("click", (e) => {
     overlayLayer.setPosition(undefined);
 
-    overlayLayer.setPosition(e.coordinate);
-  })
+    const features = map.getFeaturesAtPixel(e.pixel);
 
+    if (features.length) {
+      const clickedFeasture = features[0];
+      fearureName.innerHTML = clickedFeasture.get("name");
+      fearureAdditionalInfo.innerHTML = clickedFeasture.get("description");
 
+      overlayLayer.setPosition(e.coordinate);
+    }
+  });
 }
 
-init()
+init();
