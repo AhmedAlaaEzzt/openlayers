@@ -1,19 +1,49 @@
 function init() {
-  const fillStyle = new ol.style.Fill({
-    color: [40, 119, 247, 1], //rgba
-  });
+  const fillStyle = (color) =>
+    new ol.style.Fill({
+      color,
+    });
 
   const strokeStyle = new ol.style.Stroke({
     color: [30, 30, 31, 1], //rgba
     width: 3,
-   });
-
-   const regularShapeStyle = new ol.style.RegularShape({
-    fill: new ol.style.Fill({ color: [245, 49, 5, 1] }), //rgba
-    stroke: strokeStyle,
-    points: 3,
-    radius: 15,
   });
+
+  const regularShapeStyle = (color) =>
+    new ol.style.RegularShape({
+      fill: new ol.style.Fill({ color }), //rgba
+      stroke: strokeStyle,
+      points: 3,
+      radius: 15,
+    });
+
+  const featuresStyle = function (feature) {
+    let geometryType = feature.getGeometry().getType();
+
+    switch (geometryType) {
+      case "Point":
+        feature.setStyle([
+          new ol.style.Style({
+            image: regularShapeStyle(feature.get("bgcolor")),
+          }),
+        ]);
+        break;
+      case "Polygon":
+        feature.setStyle([
+          new ol.style.Style({
+            fill: fillStyle(feature.get("bgcolor")),
+          }),
+        ]);
+        break;
+      case "LineString":
+        feature.setStyle([
+          new ol.style.Style({
+            stroke: strokeStyle,
+          }),
+        ]);
+        break;
+    }
+  };
 
   const map = new ol.Map({
     view: new ol.View({
@@ -27,11 +57,7 @@ function init() {
           url: "./data/vector/map.geojson",
           format: new ol.format.GeoJSON(),
         }),
-        style: new ol.style.Style({
-          fill: fillStyle,
-          stroke: strokeStyle,
-          image: regularShapeStyle
-        })
+        style: featuresStyle,
       }),
     ],
     target: "js-map",
