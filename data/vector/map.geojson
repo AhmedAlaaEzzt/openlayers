@@ -5,7 +5,8 @@
       "type": "Feature",
       "properties": {
         "name": "city01",
-        "description": "city01 ......"
+        "description": "city01 ......",
+        "bgcolor": "red"
       },
       "geometry": {
         "type": "Point",
@@ -19,7 +20,8 @@
       "type": "Feature",
       "properties": {
         "name": "city02",
-        "description": "city02 ...."
+        "description": "city02 ....",
+        "bgcolor": "green"
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +35,8 @@
       "type": "Feature",
       "properties": {
         "name": "city03",
-        "description": "city03 ........"
+        "description": "city03 ........",
+        "bgcolor": "blue"
       },
       "geometry": {
         "type": "Point",
@@ -47,7 +50,8 @@
       "type": "Feature",
       "properties": {
         "name": "country01",
-        "description": "country01...."
+        "description": "country01....",
+        "bgcolor": "white"
       },
       "geometry": {
         "type": "Polygon",
@@ -89,7 +93,8 @@
       "type": "Feature",
       "properties": {
         "name": "country02",
-        "description": "country02...."
+        "description": "country02....",
+        "bgcolor": "gray"
       },
       "geometry": {
         "type": "Polygon",
@@ -131,7 +136,8 @@
       "type": "Feature",
       "properties": {
         "name": "country03",
-        "description": "country03....."
+        "description": "country03.....",
+        "bgcolor": "black"
       },
       "geometry": {
         "type": "Polygon",
@@ -167,7 +173,9 @@
     },
     {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "bgcolor": ""
+      },
       "geometry": {
         "type": "LineString",
         "coordinates": [
